@@ -19,4 +19,6 @@ An AI-powered language translation web application built using Flask and Python.
 
 ## Run Locally
 pip install -r requirements.txt
+
 python app.py
+
