@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Translator | LinguaAI{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+  <div class="badge">Live Translator</div>
+  <h1>Translate with AI-powered precision.</h1>
+  <p>Type text, choose languages, and let LinguaAI deliver polished results instantly.</p>
+</section>
+
+<form id="translator-form" class="translator-shell" method="post" action="{{ url_for('translator') }}">
+  <div class="translator-grid">
+    <div class="panel">
+      <div class="panel-header">
+        <select name="source_language" id="source-language">
+          {% for code, label in language_options %}
+          <option value="{{ code }}" {% if source_lang == code %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <span class="muted">Neural Source Active</span>
+      </div>
+      <textarea id="source-text" name="text" maxlength="2000" placeholder="Type or paste content here...">{{ input_text }}</textarea>
+      <div class="panel-footer">
+        <div class="icon-actions">
+          <button type="button" class="icon-btn speak-btn" data-target="source-text" data-language="{{ source_lang or 'en' }}" aria-label="Speak source text">
+            <span class="material-symbols-outlined">volume_up</span>
+          </button>
+          <button type="button" class="icon-btn copy-btn" data-target="source-text" aria-label="Copy source text">
+            <span class="material-symbols-outlined">content_copy</span>
+          </button>
+        </div>
+        <span class="muted" id="source-count">{{ input_text|length if input_text else 0 }}/2000</span>
+      </div>
+    </div>
+
+    <button type="button" id="swap-languages" class="swap-btn" aria-label="Swap languages">
+      <span class="material-symbols-outlined">swap_horiz</span>
+    </button>
+
+    <div class="panel">
+      <div class="panel-header">
+        <select name="target_language" id="target-language">
+          {% for code, label in language_options[1:] %}
+          <option value="{{ code }}" {% if target_lang == code %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <span class="muted">Live Translation</span>
+      </div>
+      <textarea id="target-text" name="translated_text" readonly placeholder="Translation will appear here instantly...">{{ translated_text }}</textarea>
+      <div class="panel-footer">
+        <div class="icon-actions">
+          <button type="button" class="icon-btn speak-btn" data-target="target-text" data-language="{{ target_lang or 'en' }}" aria-label="Speak translated text">
+            <span class="material-symbols-outlined">volume_up</span>
+          </button>
+          <button type="button" class="icon-btn copy-btn" data-target="target-text" aria-label="Copy translated text">
+            <span class="material-symbols-outlined">content_copy</span>
+          </button>
+        </div>
+        <span class="muted" id="status-message">{{ message }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="translator-actions">
+    <button type="submit" class="button primary large">Translate Now</button>
+    <span class="muted">Detected language: {{ detected_lang or '—' }}</span>
+  </div>
+</form>
+{% endblock %}

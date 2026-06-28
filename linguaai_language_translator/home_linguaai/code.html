@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LinguaAI | The Future of Translation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Geist:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-tint": "#ddb7ff",
+                    "surface-dim": "#131313",
+                    "outline-variant": "#4d4354",
+                    "background": "#131313",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#ffb0cd",
+                    "on-primary": "#490080",
+                    "tertiary": "#ffb0cd",
+                    "surface-container": "#201f1f",
+                    "error": "#ffb4ab",
+                    "on-tertiary": "#640039",
+                    "on-tertiary-fixed-variant": "#8c0053",
+                    "secondary": "#adc6ff",
+                    "on-primary-fixed-variant": "#6900b3",
+                    "error-container": "#93000a",
+                    "surface-container-highest": "#353534",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-secondary-container": "#e6ecff",
+                    "inverse-on-surface": "#313030",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "primary-fixed": "#f0dbff",
+                    "primary-container": "#b76dff",
+                    "secondary-container": "#0566d9",
+                    "surface": "#131313",
+                    "surface-variant": "#353534",
+                    "on-primary-fixed": "#2c0051",
+                    "on-surface-variant": "#cfc2d6",
+                    "on-background": "#e5e2e1",
+                    "on-surface": "#e5e2e1",
+                    "outline": "#988d9f",
+                    "on-secondary-fixed": "#001a42",
+                    "on-tertiary-fixed": "#3e0022",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-fixed": "#d8e2ff",
+                    "primary": "#ddb7ff",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffd9e4",
+                    "on-secondary": "#002e6a",
+                    "on-primary-container": "#400071",
+                    "inverse-surface": "#e5e2e1",
+                    "inverse-primary": "#842bd2",
+                    "surface-bright": "#3a3939",
+                    "tertiary-container": "#f751a1",
+                    "on-tertiary-container": "#570032"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "container-max": "1280px",
+                    "unit": "4px",
+                    "stack-xl": "64px",
+                    "stack-md": "24px",
+                    "margin-mobile": "16px",
+                    "stack-xs": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "label-sm": ["Geist"],
+                    "mono-code": ["Geist"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["13px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "mono-code": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top-color: rgba(255, 255, 255, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            transform: translateY(-4px);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.1);
+        }
+
+        .neural-gradient {
+            background: linear-gradient(135deg, #b76dff 0%, #0566d9 100%);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(221, 183, 255, 0.3);
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards ease-out;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; filter: blur(2px); }
+            50% { opacity: 0.5; filter: blur(6px); }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Background Shader -->
+
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(168,85,247,0.15)] z-50 bg-white/5 dark:bg-black/5">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<!-- Brand Logo -->
+<div class="flex items-center gap-3">
+<img alt="LinguaAI Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvi1Wd29wtJW9mAIE7Tet8-LSl6WBgzPKmzxHu2aMOM04rN_0WXjplqTvOSegcHmUMTWKelH6m-uYfNwwqRFxHBW1tpDjYjTmqaMJ8kfCIl4nzqki35tuS1_R9zdeM0e2ffEmVxIJ4PedSzcs_2RA5w8bBbH7jjB7aaT1khA1sFg6I9d-KrYMZh5_FCIkBuYFVtzNdzmpQcGCx_BsQuiOMIvJ38tu1RmQYLsr2FcHfInbM14wUltcJz7ho"/>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight">LinguaAI</span>
+</div>
+<!-- Navigation Links (Desktop) -->
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-sm text-label-sm text-primary dark:text-primary font-semibold border-b-2 border-primary py-1" href="#">Home</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors py-1" href="#">Translator</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors py-1" href="#">About</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors py-1" href="#">Contact</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-white/10 transition-all duration-300">
+<span class="material-symbols-outlined text-primary" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="neural-gradient px-6 py-2 rounded-full font-label-sm text-label-sm font-bold text-white shadow-lg active:scale-95 transition-transform duration-200">
+                    Get Started
+                </button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter w-full grid lg:grid-cols-2 gap-16 items-center">
+<div class="fade-up space-y-8" style="animation-delay: 0.2s">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-primary/20">
+<span class="w-2 h-2 rounded-full bg-primary pulse-dot"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Next-Gen AI Active</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white leading-tight">
+<span class="typing-cursor" id="typing-text"></span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Translate any language instantly with the power of AI. Breaking communication barriers with neural processing at the speed of thought.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="neural-gradient px-8 py-4 rounded-xl font-headline-md text-white font-bold shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:brightness-110 active:scale-95 transition-all">
+                            Get Started
+                        </button>
+<button class="glass-card px-8 py-4 rounded-xl font-headline-md text-white font-bold border border-white/10 hover:border-primary/50 transition-all">
+                            Learn More
+                        </button>
+</div>
+</div>
+<!-- Hero Visuals -->
+<div class="relative fade-up" style="animation-delay: 0.4s">
+<div class="relative aspect-square w-full max-w-[500px] mx-auto lg:ml-auto">
+<!-- Map Visual -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-full h-full opacity-60 mix-blend-screen" data-alt="A glowing, holographic 3D world map constructed from intricate fiber-optic lines and pulsating data nodes. The map is set against a deep obsidian background with ethereal violet and neon blue light trails orbiting the globe. High-fidelity cinematic rendering with deep depth of field and atmospheric digital particles." data-location="world" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+</div>
+<!-- Floating Language Chips -->
+<div class="absolute top-10 left-0 floating glass-card p-4 rounded-2xl flex items-center gap-3" style="animation-delay: 0s">
+<span class="font-mono-code text-primary font-bold">EN</span>
+<div class="w-4 h-0.5 bg-primary/30 rounded"></div>
+<span class="font-label-sm text-on-surface">English</span>
+</div>
+<div class="absolute top-1/2 -right-4 floating glass-card p-4 rounded-2xl flex items-center gap-3" style="animation-delay: 1.5s">
+<span class="font-mono-code text-secondary font-bold">JP</span>
+<div class="w-4 h-0.5 bg-secondary/30 rounded"></div>
+<span class="font-label-sm text-on-surface">日本語</span>
+</div>
+<div class="absolute -bottom-4 left-1/4 floating glass-card p-4 rounded-2xl flex items-center gap-3" style="animation-delay: 0.7s">
+<span class="font-mono-code text-tertiary font-bold">ES</span>
+<div class="w-4 h-0.5 bg-tertiary/30 rounded"></div>
+<span class="font-label-sm text-on-surface">Español</span>
+</div>
+<div class="absolute top-1/3 -left-12 floating glass-card p-4 rounded-2xl flex items-center gap-3" style="animation-delay: 2.2s">
+<span class="font-mono-code text-primary-fixed-dim font-bold">FR</span>
+<div class="w-4 h-0.5 bg-primary-fixed-dim/30 rounded"></div>
+<span class="font-label-sm text-on-surface">Français</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Bento Grid -->
+<section class="py-stack-xl max-w-container-max mx-auto px-gutter">
+<div class="mb-16 text-center space-y-4">
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-white">Engineered for Excellence</h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto">Discover the features that make LinguaAI the world's most advanced translation platform.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[240px]">
+<!-- Card 1 -->
+<div class="md:col-span-2 glass-card rounded-[2rem] p-8 flex flex-col justify-end group">
+<div class="material-symbols-outlined text-4xl text-primary mb-4" data-icon="language">language</div>
+<h3 class="font-headline-md text-white mb-2">50+ Languages</h3>
+<p class="font-body-md text-on-surface-variant">Breaking barriers across continents with nuance-aware AI that understands cultural context.</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-[2rem] p-8 flex flex-col justify-end group">
+<div class="material-symbols-outlined text-4xl text-secondary mb-4" data-icon="bolt">bolt</div>
+<h3 class="font-headline-md text-white mb-2">Instant</h3>
+<p class="font-body-md text-on-surface-variant">Zero-latency processing for real-time conversations.</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-[2rem] p-8 flex flex-col justify-end group">
+<div class="material-symbols-outlined text-4xl text-tertiary mb-4" data-icon="shield_lock">shield_lock</div>
+<h3 class="font-headline-md text-white mb-2">Secure</h3>
+<p class="font-body-md text-on-surface-variant">Your privacy is paramount. Enterprise-grade encryption.</p>
+</div>
+<!-- Card 4 -->
+<div class="md:col-span-2 lg:col-span-1 glass-card rounded-[2rem] p-8 flex flex-col justify-end group">
+<div class="material-symbols-outlined text-4xl text-primary-container mb-4" data-icon="devices">devices</div>
+<h3 class="font-headline-md text-white mb-2">Fully Responsive</h3>
+<p class="font-body-md text-on-surface-variant">Optimized for every screen, from mobile to desktop.</p>
+</div>
+<!-- Bonus Card -->
+<div class="md:col-span-3 glass-card rounded-[2rem] p-10 flex flex-col md:flex-row items-center gap-10 overflow-hidden relative">
+<div class="flex-1 space-y-4">
+<div class="inline-block px-3 py-1 rounded bg-secondary-container/20 text-secondary font-label-sm uppercase">Coming Soon</div>
+<h3 class="font-display-lg text-headline-md text-white">Neural Voice Synthesis</h3>
+<p class="font-body-md text-on-surface-variant">Translate not just text, but your unique voice and tone perfectly across any language.</p>
+</div>
+<div class="w-full md:w-64 h-40 bg-surface-container rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 neural-gradient opacity-20"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary animate-pulse" data-icon="graphic_eq">graphic_eq</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Translator Preview -->
+<section class="py-stack-xl relative overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="glass-card rounded-[3rem] p-1 md:p-2 bg-gradient-to-br from-white/10 to-transparent">
+<div class="bg-black/40 backdrop-blur-2xl rounded-[2.8rem] p-8 md:p-12">
+<div class="flex flex-col lg:flex-row gap-8">
+<div class="flex-1 space-y-4">
+<div class="flex justify-between items-center px-4">
+<span class="font-label-sm text-on-surface-variant">Source: English</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_horiz">more_horiz</span>
+</div>
+<div class="bg-black/50 rounded-2xl p-6 min-h-[200px] border border-white/5">
+<p class="font-body-lg text-white">The future of communication is here. Instant translation powered by neural networks allows us to connect like never before.</p>
+</div>
+</div>
+<div class="flex items-center justify-center lg:pt-14">
+<button class="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:rotate-180 transition-transform duration-500">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="sync">sync</span>
+</button>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex justify-between items-center px-4">
+<span class="font-label-sm text-on-surface-variant">Target: Japanese</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="bg-primary/5 rounded-2xl p-6 min-h-[200px] border border-primary/20">
+<p class="font-body-lg text-primary">コミュニケーションの未来がここにあります。ニューラルネットワークによる即時翻訳により、これまでにない形でつながることができます。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-stack-xl border-t border-white/5">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-md">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<img alt="LinguaAI Logo" class="w-8 h-8" src="https://lh3.googleusercontent.com/aida/AP1WRLvi1Wd29wtJW9mAIE7Tet8-LSl6WBgzPKmzxHu2aMOM04rN_0WXjplqTvOSegcHmUMTWKelH6m-uYfNwwqRFxHBW1tpDjYjTmqaMJ8kfCIl4nzqki35tuS1_R9zdeM0e2ffEmVxIJ4PedSzcs_2RA5w8bBbH7jjB7aaT1khA1sFg6I9d-KrYMZh5_FCIkBuYFVtzNdzmpQcGCx_BsQuiOMIvJ38tu1RmQYLsr2FcHfInbM14wUltcJz7ho"/>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">LinguaAI</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Empowering global conversations with next-generation artificial intelligence. Connect, translate, and grow without limits.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline-md text-white">Product</h4>
+<nav class="flex flex-col gap-2">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Translator</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Reference</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Enterprise</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline-md text-white">Company</h4>
+<nav class="flex flex-col gap-2">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Blog</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline-md text-white">Legal &amp; Support</h4>
+<nav class="flex flex-col gap-2">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support Center</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">FAQ</a>
+</nav>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-sm text-on-surface-variant">© 2024 LinguaAI. All rights reserved.</span>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer" data-icon="public">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer" data-icon="chat">chat</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer" data-icon="mail">mail</span>
+</div>
+</div>
+</footer>
+<script>
+        // Typing Animation
+        const text = "AI Language Translator";
+        const element = document.getElementById("typing-text");
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 100);
+            } else {
+                element.classList.remove('typing-cursor');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+
+        // Smooth reveal on scroll (simple IntersectionObserver)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body></html>

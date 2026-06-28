@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}LinguaAI | AI Language Translator{% endblock %}
+
+{% block content %}
+<section class="hero-grid">
+  <div class="hero-copy">
+    <div class="badge">Next-Gen AI Translation</div>
+    <h1>Translate every conversation with instant, intelligent clarity.</h1>
+    <p>LinguaAI connects your ideas to the world with fast, accurate, and responsive translations for work, travel, and global communication.</p>
+    <div class="action-row">
+      <a class="button primary" href="{{ url_for('translator') }}">Open translator</a>
+      <a class="button secondary" href="{{ url_for('about') }}">Learn more</a>
+    </div>
+    <div class="hero-highlights">
+      <div class="highlight-card">
+        <span class="material-symbols-outlined">bolt</span>
+        <div>
+          <strong>Instant responses</strong>
+          <p>Real-time translation ready in seconds.</p>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <span class="material-symbols-outlined">public</span>
+        <div>
+          <strong>Global reach</strong>
+          <p>Support for dozens of languages.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="glass-card feature-card">
+      <p class="eyebrow">Supported languages</p>
+      <div class="chip-row">
+        <span class="chip">English</span>
+        <span class="chip">Hindi</span>
+        <span class="chip">Spanish</span>
+        <span class="chip">French</span>
+        <span class="chip">Arabic</span>
+      </div>
+      <p class="muted">From business emails to travel phrases, LinguaAI keeps your message fluent and natural.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
